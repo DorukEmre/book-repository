@@ -66,6 +66,20 @@ AuthorSchema
     return this.date_of_death ? DateTime.fromJSDate(this.date_of_death).toLocaleString(DateTime.DATE_MED) : '';
   });
 
+AuthorSchema
+  .virtual('lifespan')
+  .get(function () {
+    let lifespan = '';
+    if (this.date_of_birth) {
+      lifespan = DateTime.fromJSDate(this.date_of_birth).toLocaleString(DateTime.DATE_MED);
+    }
+    lifespan += ' - ';
+    if (this.date_of_death) {
+      lifespan += DateTime.fromJSDate(this.date_of_death).toLocaleString(DateTime.DATE_MED)
+    }
+    return lifespan;
+  });
+
 //Export model
 module.exports = mongoose.model('Author', AuthorSchema);
 
