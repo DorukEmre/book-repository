@@ -15,9 +15,14 @@ const books = [
 ];
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { books: books });
+// router.get('/', function(req, res, next) {
+//   res.render('index', { books: books });
+// });
+// GET home page.
+router.get('/', function(req, res) {
+  res.redirect('/catalog');
 });
+
 router.get('/new', function(req, res, next) {
   res.render('form');
 });
