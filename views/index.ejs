@@ -1,0 +1,13 @@
+<%- include('partials/head.ejs') %>
+    <title>Book repository</title>
+</head>
+<body>
+    <h1>Book repository</h1>
+    <p><a href="/new">Add new book</a></p>
+    <% for( let i = 0; i < books.length; i++ ) { %>
+        <h3><%= books[i].author %> </h3>
+        <p><%= books[i].title %> </p>
+        <p><%= books[i].added %> </p>
+    <% } %>
+
+<%- include('partials/footer.ejs') %>
