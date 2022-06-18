@@ -1,0 +1,25 @@
+<%- include('partials/head.ejs') %>
+    <title><%= title %> | Book repository</title>
+</head>
+<body>
+    <%- include('partials/sidebar.ejs') %>
+    <h1>ID: <%= bookinstance._id %></h1>
+
+    <p>Title: <a href="<%= bookinstance.book.url %>"><%= bookinstance.book.title %></a></p>
+
+    <p>Imprint: <%= bookinstance.imprint %></p>
+    <p>Status:     
+        <% if (bookinstance.status=='Available') { %>
+            <p class="text-success"><%= bookinstance.status %></p>
+        <% } else if (bookinstance.status=='Maintenance') { %>
+            <p class="text-danger"><%= bookinstance.status %></p>
+        <% } else { %>                       
+            <p class="text-warning"><%= bookinstance.status %></p>
+        <% } %>
+
+        <% if (bookinstance.status!='Available') { %>
+            <p>Due back: <%= bookinstance.due_back_formatted %></p>
+        <% } %>
+    </p>
+
+<%- include('partials/footer.ejs') %>
