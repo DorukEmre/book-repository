@@ -1,0 +1,32 @@
+<%- include('partials/head.ejs') %>
+    <title><%= title %> | Book repository</title>
+</head>
+<body>
+    <%- include('partials/sidebar.ejs') %>
+    <h1><%= title %></h1>
+    <ul>
+        <% if (bookinstance_list) { %>      
+            <% for( let i = 0; i < bookinstance_list.length; i++ ) { %>
+                <% let val = bookinstance_list[i] %> 
+                <li>
+                    <a href="<%= val.url %>"><%= val.book.title %> </a>: <%= val.imprint %> -
+                    <% if (val.status=='Available') { %>
+                        <span class="text-success"><%= val.status %></span>
+                    <% } else if (val.status=='Maintenance') { %>
+                        <span class="text-danger"><%= val.status %></span>
+                    <% } else { %>                       
+                        <span class="text-warning"><%= val.status %></span>
+                    <% } %>
+                    <% if (val.status!='Available') { %>
+                        <span>(Due: <%= val.due_back %> )</span>
+                    <% } %>
+                </li>
+            <% } %>
+        <% } else { %>
+            <li>
+                There are no book copies in this library.
+            </li>
+        <% } %>
+    </ul>
+
+<%- include('partials/footer.ejs') %>
