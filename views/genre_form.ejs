@@ -1,0 +1,24 @@
+<%- include('partials/head.ejs') %>
+    <title><%= title %> | Book repository</title>
+</head>
+<body>
+    <%- include('partials/sidebar.ejs') %>
+
+    <h1><%= title %></h1>
+
+    <form action="" method="post">
+        <div class="form-group">
+            <label for="name">Genre: </label>
+            <input id="name.form-control" type="text" placeholder='Fantasy, Poetry etc.' name="name" value=<% (typeof genre === 'undefined') ? '' : genre.name %>>
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+        <% if (typeof errors != 'undefined') { %>
+            <ul>
+                <% for( let i = 0; i < errors.length; i++ ) { %>
+                    <li><%= errors[i].msg %></li>
+                <% } %>
+            </ul>
+        <% } %>
+    </form>
+
+<%- include('partials/footer.ejs') %>
