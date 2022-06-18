@@ -1,0 +1,32 @@
+<%- include('partials/head.ejs') %>
+    <title><%= title %> | Book repository</title>
+</head>
+<body>
+    <%- include('partials/sidebar.ejs') %>
+
+    <h1>Author: <%= author.name %></h1>
+    <p><%= author.date_of_birth_formatted %> - <%= author.date_of_death_formatted %></p>
+
+
+    <div style='margin-left:20px;margin-top:20px'>
+
+    <h4>Books</h4>
+        <% if (author_books.length > 0) { %>      
+            <dl>
+            <% for( let i = 0; i < author_books.length; i++ ) { %>
+                <dt>
+                    <a href="<%= author_books[i].url %>"><%= author_books[i].title %></a>
+                </dt>
+                <dd>
+                    <%= author_books[i].summary %>
+                </dd>                
+            <% } %>
+            </dl>
+        <% } else { %>
+            <p>
+                This author has no books.
+            </p>
+        <% } %>
+    </div>
+
+<%- include('partials/footer.ejs') %>
