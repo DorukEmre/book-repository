@@ -1,0 +1,23 @@
+<%- include('partials/head.ejs') %>
+    <title><%= title %> | Book repository</title>
+</head>
+<body>
+    <%- include('partials/sidebar.ejs') %>
+    <h1><%= title %></h1>
+    <ul>
+        <% if (author_list) { %>      
+            <% for( let i = 0; i < author_list.length; i++ ) { %>
+                <% let author = author_list[i] %> 
+                <li>
+                    <a href="<%= author.url %>"><%= author.name %></a>
+                    (<%= author.date_of_birth_formatted %> - <%= author.date_of_death_formatted %>)                    
+                </li>
+            <% } %>
+        <% } else { %>
+            <li>
+                There are no authors.
+            </li>
+        <% } %>
+    </ul>
+
+<%- include('partials/footer.ejs') %>
