@@ -1,0 +1,21 @@
+<%- include('partials/head.ejs') %>
+    <title><%= title %> | Book repository</title>
+</head>
+<body>
+    <%- include('partials/sidebar.ejs') %>
+    <h1><%= title %></h1>
+    <ul>
+        <% if (genre_list) { %>      
+            <% for( let i = 0; i < genre_list.length; i++ ) { %>
+                <li>
+                    <a href="<%= genre_list[i].url %>"><%= genre_list[i].name %> </a>
+                </li>
+            <% } %>
+        <% } else { %>
+            <li>
+                There are no genres.
+            </li>
+        <% } %>
+    </ul>
+
+<%- include('partials/footer.ejs') %>
