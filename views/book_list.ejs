@@ -1,0 +1,22 @@
+<%- include('partials/head.ejs') %>
+    <title>Book repository</title>
+</head>
+<body>
+    <%- include('partials/sidebar.ejs') %>
+    <h1><%= title %></h1>
+    <ul>
+        <% if (book_list) { %>      
+            <% for( let i = 0; i < book_list.length; i++ ) { %>
+                <li>
+                    <a href="<%= book_list[i].url %>"><%= book_list[i].title %> </a>
+                    (<%= book_list[i].author.name %>)
+                </li>
+            <% } %>
+        <% } else { %>
+            <li>
+                There are no books
+            </li>
+        <% } %>
+    </ul>
+
+<%- include('partials/footer.ejs') %>
