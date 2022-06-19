@@ -1,0 +1,64 @@
+<%- include('partials/head.ejs') %>
+    <title><%= title %> | Book repository</title>
+</head>
+<body>
+    <%- include('partials/sidebar.ejs') %>
+
+    <h1><%= title %></h1>
+
+    <form action="" method="post">
+        <div class="form-group">
+            <label for="title">Title: </label>
+            <input id="title" class="form-control" type="text" placeholder='Name of book' name="title" required value=<% (typeof book === 'undefined') ? '' : book.title %>>
+        </div>
+        <div class="form-group">
+            <label for="author">Author: </label>
+            <select name="author" id="author" class="form-control" placeholder='Select author' required>
+    <% authors.sort(function(a, b) {
+        let textA = a.family_name.toUpperCase(); 
+        let textB = b.family_name.toUpperCase(); 
+        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+    }); %> 
+
+    <% for( let i = 0; i < authors.length; i++ ) { %>
+        
+        <% if (typeof book != 'undefined') { %>
+            
+            <option value="<%= authors[i]._id %>" selected="<% (authors[i]._id.toString()===book.authors[i]._id.toString() ? 'selected' : false) %> "><%= authors[i].name %></option>
+        <% } else { %>
+            <option value="<%= authors[i]._id %>"><%= authors[i].name %></option>         
+        <% } %>
+    <% } %>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="summary">Summary: </label>
+            <textarea name="summary" placeholder='Summary' id="summary" class="form-control" required><% (typeof book === 'undefined') ? '' : book.summary %></textarea>
+        </div>
+        <div class="form-group">
+            <label for="isbn">ISBN: </label>
+            <input id="isbn" class="form-control" type="text" placeholder='ISBN13' name="isbn" value=<% (typeof book === 'undefined') ? '' : book.isbn %>>
+        </div>
+        <div class="form-group">
+            <label>Genre: </label>
+            <div>
+    <% for( let i = 0; i < genres.length; i++ ) { %>
+        <div style='display: inline; padding-right:10px;'>
+            <input type="checkbox" class="checkbox-input" name='genre' id='<%= genres[i]._id %>' value='<%= genres[i]._id %>' checked=<%= genres[i].checked %>>
+            <label for="<%= genres[i]._id %>"><%= genres[i].name %></label>
+        
+        </div>
+    <% } %>
+            </div>
+        </div>
+            <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+    <% if (typeof errors != 'undefined') { %>
+        <ul>
+            <% for( let i = 0; i < errors.length; i++ ) { %>
+                <li><%= errors[i].msg %></li>
+            <% } %>
+        </ul>
+    <% } %>
+
+<%- include('partials/footer.ejs') %>
