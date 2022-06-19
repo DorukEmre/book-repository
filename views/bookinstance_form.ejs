@@ -19,7 +19,7 @@
 
     <% for( let i = 0; i < book_list.length; i++ ) { %>       
             
-        <option value="<%= book_list[i]._id %>" selected="<%  ((typeof selected_book != 'undefined' && selected_book==book_list[i]._id.toString()) ? 'selected' : false) %> "><%= book_list[i].title %></option>
+        <option value="<%= book_list[i]._id %>" selected="<%= ((typeof selected_book != 'undefined' && selected_book==book_list[i]._id.toString()) ? 'selected' : false) %>"><%= book_list[i].title %></option>
         
     <% } %>
             </select>
@@ -27,12 +27,12 @@
 
         <div class="form-group">
             <label for="imprint">Imprint: </label>
-            <input id="imprint" class="form-control" type="text" placeholder='Publisher and date information' name="imprint" required value=<% (typeof bookinstance  === 'undefined') ? '' : bookinstance.imprint %>>
+            <input id="imprint" class="form-control" type="text" placeholder='Publisher and date information' name="imprint" required value=<%= (typeof bookinstance  === 'undefined') ? '' : bookinstance.imprint %>>
         </div>
 
         <div class="form-group">
             <label for="due_back">Date when book available: </label>
-            <input id="due_back" class="form-control" type="date" placeholder='Publisher and date information' name="due_back" required value=<% (typeof bookinstance  === 'undefined') ? '' : bookinstance.due_back %>>
+            <input id="due_back" class="form-control" type="date" placeholder='Publisher and date information' name="due_back" required value='<%= (typeof bookinstance  === 'undefined') ? '' : bookinstance.due_back %>'>
         </div>
         
         <div class="form-group">
