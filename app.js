@@ -12,6 +12,9 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var catalogRouter = require('./routes/catalog');
 
+var compression = require('compression');
+var helmet = require('helmet');
+
 var app = express();
 
 //Import the mongoose module
@@ -27,6 +30,8 @@ var db = mongoose.connection;
 //Bind connection to error event (to get notification of connection errors)
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
+app.use(compression()); //Compress all routes
+app.use(helmet());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
